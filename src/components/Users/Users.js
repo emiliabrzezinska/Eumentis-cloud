@@ -54,32 +54,30 @@ const Users = () => {
           <div className="sk-circle12 sk-child"></div>
         </div>
       )}
-      <ul>
+      {/* <ul> */}
         {users.map((user) => (
-          <li key={user.id}>
+          <div className="view" key={user.id}>
+            <div className="name">{user.name}</div>
+           <span className="data">Email:</span> {user.email}
             <br></br>
-            {user.name}
+           <span className="data">Phone:</span> {user.phone}
             <br></br>
-            Email: {user.email}
+            <span className="data">Company:</span> {user.company.name}
             <br></br>
-            Phone: {user.phone}
+            <span className="data">Website:</span> {user.website}
             <br></br>
-            Company: {user.company.name}
-            <br></br>
-            Website: {user.website}
-            <br></br>
-            Address: {user.address.street}, {user.address.suite},
+            <span className="data">Address:</span> {user.address.street}, {user.address.suite},
             {user.address.city}, {user.address.zipcode}
-          </li>
+          </div>
         ))}
-      </ul>
-      <ul>
+      {/* </ul> */}
+      {/* <ul> */}
         {avatars.map(({ user }) => (
-          <li key={user.id}>
+          <div key={user.id}>
             <img src={user.username}></img>
-          </li>
+          </div>
         ))}
-      </ul>
+      {/* </ul> */}
     </div>
   );
 };
