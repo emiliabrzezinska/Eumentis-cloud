@@ -5,28 +5,38 @@
 }
 
 .view{
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 6px 12px -5px rgba(66, 68, 90, 1);
-    -moz-box-shadow: 0px 6px 12px -5px rgba(66, 68, 90, 1);
-    box-shadow: 0px 6px 12px -5px rgba(66, 68, 90, 1);;
-    margin-top: 50px;
-    display: flex;
+  margin-top: 20px;
+  padding: 5px;
+  display: flex;
+  height: auto;
+  max-width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 1px 2px 1px rgb(157, 159, 161);
 }
 
+.text{
+  margin-top: 10px;
+  text-align: left;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
 
 img{
-  width: 30px;
-  height: 30px;
+  height: 200px;
+  padding-right: 10px;
 }
 
 .name{
-    font-size: larger;
+    font-size: 30px;
     font-weight: 600;
+    margin-bottom: 15px;
 }
 
 .data{
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .sk-circle {
