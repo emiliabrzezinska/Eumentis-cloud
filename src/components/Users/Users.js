@@ -6,7 +6,6 @@ const Users = () => {
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
       fetch("https://jsonplaceholder.typicode.com/users")
         .then((response) => {
           return response.json();
@@ -16,7 +15,6 @@ const Users = () => {
           setIsPending(false);
           console.log(data);
         });
-    }, 1000);
   }, []);
 
   return (
