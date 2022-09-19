@@ -11,6 +11,13 @@
     -moz-box-shadow: 0px 6px 12px -5px rgba(66, 68, 90, 1);
     box-shadow: 0px 6px 12px -5px rgba(66, 68, 90, 1);;
     margin-top: 50px;
+    display: flex;
+}
+
+
+img{
+  width: 30px;
+  height: 30px;
 }
 
 .name{
