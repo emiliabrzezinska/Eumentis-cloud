@@ -19,9 +19,8 @@ const Users = () => {
   }, []);
 
   return (
-    <div>
+    <div className="layout">
       {isPending && <Loading />}
-
       {users.map((user) => (
         <div className="view" key={user.id}>
           <div className="avatar">
