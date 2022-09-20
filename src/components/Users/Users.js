@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import Loading from "../Loading/Loading.js";
+import { MailOutlined } from "@ant-design/icons/lib/icons/index.js";
+import { PhoneOutlined } from "@ant-design/icons/lib/icons/index.js";
+import { GlobalOutlined } from "@ant-design/icons/lib/icons/index.js";
 import "./Users.css";
 
-const Users = ({ data }) => {
+const Users = () => {
   const [users, setUsers] = useState([]);
   const [isPending, setIsPending] = useState(true);
 
@@ -31,13 +34,11 @@ const Users = ({ data }) => {
           </div>
           <div className="text">
             <div className="name">{user.name}</div>
-            <span className="data">Email:</span>
-            {data}
-            {user.email}
+            <span className="data"></span><MailOutlined /> {user.email}
             <br></br>
-            <span className="data">Phone:</span> {user.phone}
+            <span className="data"></span><PhoneOutlined /> {user.phone}
             <br></br>
-            <span className="data">Website:</span> {user.website}
+            <span className="data"></span> <GlobalOutlined /> {user.website}
           </div>
           <div className="opinion">
             <p>heart</p>
