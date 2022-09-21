@@ -19,9 +19,9 @@ const Users = () => {
     setUsers(newUsers);
   };
 
-  const handleClick = (id) => {
-    console.log(id);
-  };
+  // const handleClick = (id) => {
+  //   console.log(id);
+  // };
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -57,11 +57,17 @@ const Users = () => {
             <span className="data"></span> <GlobalOutlined /> {user.website}
           </div>
           <div className="opinion">
-            <HeartOutlined
-              style={{ color: "red", fontSize: "20px" }}
-              onClick={() => handleClick(user.id)}
-            />
-            {/* <HeartFilled style={{ color: "red", fontSize: "20px" }} onClick={()=> handleClick(user.id)} /> */}
+            {!isCliked ? (
+              <HeartOutlined key={user.id}
+                style={{ color: "red", fontSize: "20px" }}
+                onClick={() => setIsCliked(!isCliked)}
+              />
+            ) : (
+              <HeartFilled key={user.id}
+                style={{ color: "red", fontSize: "20px" }}
+                onClick={() => setIsCliked(!isCliked)}
+              />
+            )}
             <div className="line"></div>
             <p>
               <EditOutlined />
