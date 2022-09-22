@@ -11,7 +11,7 @@ import { EditOutlined } from "@ant-design/icons/lib/icons/index.js";
 import { DeleteFilled } from "@ant-design/icons/lib/icons/index.js";
 import "./Users.css";
 
-const Users = () => {
+const Users = ({close}) => {
   const [users, setUsers] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [isCliked, setIsCliked] = useState(false);
@@ -90,11 +90,8 @@ const handleOk = () => {
             )}
             <div className="line"></div>
             <div>
-              <EditOutlined type="primary" className="edit" onClick={showModal}/>
-              {openModal && <Modal close = {setOpenModal}/>}
-              {<Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <p>Some contents...</p>
-              </Modal>}
+              <EditOutlined className="edit" onClick={showModal}/>
+              {openModal && <ModalEdit close = {setOpenModal}/>}
             </div>
             <div className="line"></div>
             <DeleteFilled

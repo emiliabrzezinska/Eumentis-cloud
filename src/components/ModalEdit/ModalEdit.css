@@ -1,0 +1,41 @@
+.modal {
+    position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgb(0, 0, 0, 0.1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 4000;    
+    
+}
+
+
+.x{
+    width: 500px;
+    height: 300px;
+    background-color:aliceblue;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    border-radius: 1%;
+    border: var(--navfoot) solid;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.bar{
+    height: 150px;
+}
+
+
+.font{
+    font-size: 10px;
+   color:var(--navfoot);
+   font-weight: bold;
+}
