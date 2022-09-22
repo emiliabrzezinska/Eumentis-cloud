@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ModalEdit from "../ModalEdit/ModalEdit.js"
 import Loading from "../Loading/Loading.js";
 import { MailOutlined } from "@ant-design/icons/lib/icons/index.js";
 import { PhoneOutlined } from "@ant-design/icons/lib/icons/index.js";
@@ -13,6 +14,7 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [isCliked, setIsCliked] = useState(false);
+  const [openModal, setOpenModal] = useState(false)
 
   const handleDelete = (id) => {
     const newUsers = users.filter((user) => user.id !== id);
@@ -22,6 +24,10 @@ const Users = () => {
   // const handleClick = (id) => {
   //   console.log(id);
   // };
+
+  const handleModal =(id) => {
+    console.log(id)
+  };
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -49,34 +55,32 @@ const Users = () => {
           <div className="text">
             <div className="name">{user.name}</div>
             <span className="data"></span>
-            <MailOutlined /> {user.email}
+            <MailOutlined  className="icons"/> {user.email}
             <br></br>
-            <span className="data"></span>
-            <PhoneOutlined /> {user.phone}
+            <span className="data"></span> 
+            <PhoneOutlined className="icons"/> {user.phone}
             <br></br>
-            <span className="data"></span> <GlobalOutlined /> {user.website}
+            <span className="data"></span> 
+            <GlobalOutlined className="icons"/> {user.website}
           </div>
           <div className="opinion">
             {!isCliked ? (
-              <HeartOutlined key={user.id}
-                style={{ color: "red", fontSize: "20px" }}
+              <HeartOutlined
+                className="heartOutlined"
                 onClick={() => setIsCliked(!isCliked)}
               />
             ) : (
-              <HeartFilled key={user.id}
-                style={{ color: "red", fontSize: "20px" }}
+              <HeartFilled
+                className="heartFilled"
                 onClick={() => setIsCliked(!isCliked)}
               />
             )}
             <div className="line"></div>
-            <p>
-              <EditOutlined />
-            </p>
+            <div>
+              <EditOutlined className="edit" onClick={() => handleModal(user.id)} />
+            </div>
             <div className="line"></div>
-            <DeleteFilled
-              className="delete"
-              onClick={() => handleDelete(user.id)}
-            />
+            <DeleteFilled className="delete" onClick={() => handleDelete(user.id)} />
           </div>
         </div>
       ))}
