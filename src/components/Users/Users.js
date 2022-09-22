@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import ModalEdit from "../ModalEdit/ModalEdit.js"
+import { useEffect, useState, useContext } from "react";
+import ModalEdit from "../ModalEdit/ModalEdit.js";
+import { Modal, Button } from "antd";
 import Loading from "../Loading/Loading.js";
 import { MailOutlined } from "@ant-design/icons/lib/icons/index.js";
 import { PhoneOutlined } from "@ant-design/icons/lib/icons/index.js";
@@ -14,20 +15,32 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [isCliked, setIsCliked] = useState(false);
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  
+  
+
+  const showModal = () => {
+    setOpenModal(true);
+  };
+
+const handleOk = () => {
+  setIsModalOpen(false);
+}
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
 
   const handleDelete = (id) => {
     const newUsers = users.filter((user) => user.id !== id);
     setUsers(newUsers);
   };
-
   // const handleClick = (id) => {
   //   console.log(id);
   // };
-
-  const handleModal =(id) => {
-    console.log(id)
-  };
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -55,13 +68,13 @@ const Users = () => {
           <div className="text">
             <div className="name">{user.name}</div>
             <span className="data"></span>
-            <MailOutlined  className="icons"/> {user.email}
+            <MailOutlined className="icons" /> {user.email}
             <br></br>
-            <span className="data"></span> 
-            <PhoneOutlined className="icons"/> {user.phone}
+            <span className="data"></span>
+            <PhoneOutlined className="icons" /> {user.phone}
             <br></br>
-            <span className="data"></span> 
-            <GlobalOutlined className="icons"/> {user.website}
+            <span className="data"></span>
+            <GlobalOutlined className="icons" /> {user.website}
           </div>
           <div className="opinion">
             {!isCliked ? (
@@ -77,10 +90,17 @@ const Users = () => {
             )}
             <div className="line"></div>
             <div>
-              <EditOutlined className="edit" onClick={() => handleModal(user.id)} />
+              <EditOutlined type="primary" className="edit" onClick={showModal}/>
+              {openModal && <Modal close = {setOpenModal}/>}
+              {<Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <p>Some contents...</p>
+              </Modal>}
             </div>
             <div className="line"></div>
-            <DeleteFilled className="delete" onClick={() => handleDelete(user.id)} />
+            <DeleteFilled
+              className="delete"
+              onClick={() => handleDelete(user.id)}
+            />
           </div>
         </div>
       ))}

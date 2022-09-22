@@ -1,35 +1,30 @@
 import "./ModalEdit.css"
-import { Modal, Button } from "antd";
-import { useState } from "react";
+import { Modal } from "antd";
+import { useState, useContext } from "react";
+import { EditOutlined } from "@ant-design/icons";
+import Users from '../Users/Users.js'
 
 
-const ModalEdit = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+const ModalEdit = ({ close}) => {
+  // const {isModalOpen, handleOk, handleCancel} = useContext(Users)
+  return (
+    <div>
+      {/* <div className="modal">
+        
+        <div className="x">
+        <div className="bar"></div>
+        <div className="font"> Edit data<div className="small">Do you want to save changes?</div> </div> 
+        <div ><button onClick={() => close(false)} className="modal1">
+            Close
+          </button></div> 
+        </div>
+      </div> */}
+      
+    </div>
+  );
+};
+
+export default ModalEdit;
+
   
-    const showModal = () => {
-      setIsModalOpen(true);
-    };
-  
-    const handleOk = () => {
-      setIsModalOpen(false);
-    };
-  
-    const handleCancel = () => {
-      setIsModalOpen(false);
-    };
-  
-    return (
-      <>
-        <Button type="primary" onClick={showModal}>
-          Open Modal
-        </Button>
-        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal>
-      </>
-    );
-  };
-  
-  export default ModalEdit;
+ 
