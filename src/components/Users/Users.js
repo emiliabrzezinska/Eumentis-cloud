@@ -10,29 +10,45 @@ import { EditOutlined } from "@ant-design/icons/lib/icons/index.js";
 import { DeleteFilled } from "@ant-design/icons/lib/icons/index.js";
 import "./Users.css";
 
-
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [hearts, setHearts] = useState([]);
-  const [pens, setPens] = useState([])
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  
 
   const showModal = (id) => {
     setOpenModal(true);
-    console.log(id)
-    setPens((pens) =>
-  pens.includes(id) ? pens.filter((pen)=> pen !== id ) : pens.concat(id) );
+    console.log(id);
   };
 
-  // const handleChooseHeart = (id) =>{
-  // console.log('click');
-  // setHearts((hearts) =>
-  // hearts.includes(id) ? hearts.filter((heart)=> heart !== id ) : hearts.concat(id) );
-  // }
-
-
-
+  const Heart = ({active, onToggle})=> {
+// setIsClicked(isClicked)
+// {isClicked? <HeartOutlined/>:<HeartFilled/>}
+    return (
+      
+      <span
+      onClick={onToggle}
+      style ={{cursor: "pointer",  
+      color: active? "red" :  "green"}}
+      >
+        <HeartOutlined/>
+        </span>
+    )
+  }
+  const handleChooseHeart = (id) =>{
+  ;
+  setHearts((hearts) =>
+  hearts.includes(id) ? hearts.filter((heart)=> heart !== id ) : hearts.concat(id) );
+  }
+  const handleEdit = (id) => {
+    console.log(id)
+    setSelectedUsers((selectedUsers) =>
+      selectedUsers.includes(id) ? selectedUsers.filter((selectedUser) => selectedUser !== id) : selectedUsers.concat(id)
+    );
+  };
+  
   const handleDelete = (id) => {
     const newUsers = users.filter((user) => user.id !== id);
     setUsers(newUsers);
@@ -73,29 +89,14 @@ const Users = () => {
             <GlobalOutlined className="icons" /> {user.website}
           </div>
           <div className="opinion">
-            <HeartOutlined
-              onClick={() => {
-                users.filter((user) =>
-                  user.id !== user.id ? (
-                    <HeartOutlined style={{ color: "red" }} />
-                  ) : (
-                    <HeartFilled />
-                  )
-                );
-              }}
-            />
+            <Heart onToggle={() => handleChooseHeart(user.id)}
+            active={hearts.includes(user.id)}/>
             <div className="line"></div>
             <div>
-              <EditOutlined className="edit" onClick={() => showModal(user.id) }/>
-              {openModal && (
-                <ModalEdit
-                  close={setOpenModal}
-                  name={user.name}
-                  mail={user.email}
-                  phone={user.phone}
-                  website={user.website}
-                />
-              )}
+              <EditOutlined
+                className="edit"
+                onClick={() => showModal(user.id)}
+              />
             </div>
             <div className="line"></div>
             <DeleteFilled
@@ -103,8 +104,22 @@ const Users = () => {
               onClick={() => handleDelete(user.id)}
             />
           </div>
+         
         </div>
+        
       ))}
+                {users.map((user)=>(
+                <div key={user.id}>{openModal && (
+                <ModalEdit
+                  onToggle={() => handleEdit(user.id)}
+                  close={setOpenModal}
+                  name={user.name}
+                  mail={user.email}
+                  phone={user.phone}
+                  website={user.website}
+                />
+              )}</div>))}
+          
     </div>
   );
 };

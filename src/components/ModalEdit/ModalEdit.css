@@ -37,6 +37,10 @@
     color: rgb(95, 95, 95) ;
 }
 
+.label {
+    color: black;
+}
+
 .x{
     border: none;
     background-color:rgb(253, 253, 253) ;

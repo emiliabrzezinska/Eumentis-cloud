@@ -1,6 +1,7 @@
 import "./ModalEdit.css";
 
-const ModalEdit = ({ close, name, mail, phone, website }) => {
+const ModalEdit = ({ close, name, mail, phone, website}) => {
+console.log (name, mail)
   return (
     <div>
       <div className="modal">
@@ -12,22 +13,22 @@ const ModalEdit = ({ close, name, mail, phone, website }) => {
           <form className="form">
             <label className="one">
               <span className="aster">*</span>
-              <span>Name:</span>
+              <span className="label">Name:</span>
             </label>
             <input placeholder={name}></input>
             <label className="one">
               <span className="aster">*</span>
-              <span>Email:</span>
+              <span className="label">Email:</span>
             </label>
             <input placeholder={mail}></input>
             <label className="one">
               <span className="aster">*</span>
-              <span>Phone:</span>
+              <span className="label">Phone:</span>
             </label>
             <input placeholder={phone}></input>
             <label className="one">
               <span className="aster">*</span>
-              <span>Website:</span>
+              <span className="label">Website:</span>
             </label>
             <input placeholder={website}></input>
           </form>
