@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import ModalEdit from "../ModalEdit/ModalEdit.js";
-import { Modal, Button } from "antd";
 import Loading from "../Loading/Loading.js";
 import { MailOutlined } from "@ant-design/icons/lib/icons/index.js";
 import { PhoneOutlined } from "@ant-design/icons/lib/icons/index.js";
@@ -10,45 +9,34 @@ import { HeartFilled } from "@ant-design/icons/lib/icons/index.js";
 import { EditOutlined } from "@ant-design/icons/lib/icons/index.js";
 import { DeleteFilled } from "@ant-design/icons/lib/icons/index.js";
 import "./Users.css";
-import { formatStrategyValues } from "rc-tree-select/lib/utils/strategyUtil.js";
 
-const Users = ({close}) => {
+
+const Users = () => {
   const [users, setUsers] = useState([]);
   const [isPending, setIsPending] = useState(true);
-  const [isCliked, setIsCliked] = useState(false);
-  const [openModal, setOpenModal] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [hearts, setHearts] = useState([])
+  const [openModal, setOpenModal] = useState(false);
+  const [hearts, setHearts] = useState([]);
+  const [pens, setPens] = useState([])
 
-  
-  
-
-  const showModal = () => {
+  const showModal = (id) => {
     setOpenModal(true);
+    console.log(id)
+    setPens((pens) =>
+  pens.includes(id) ? pens.filter((pen)=> pen !== id ) : pens.concat(id) );
   };
 
-const handleOk = () => {
-  setIsModalOpen(false);
-}
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  // const handleChooseHeart = (id) =>{
+  // console.log('click');
+  // setHearts((hearts) =>
+  // hearts.includes(id) ? hearts.filter((heart)=> heart !== id ) : hearts.concat(id) );
+  // }
 
 
-// const handleChooseHeart = (id) =>{
-// console.log('click');
-// setHearts((hearts) =>
-// hearts.includes(id) ? hearts.filter((heart)=> heart !== id ) : hearts.concat(id) ); 
-// }
 
   const handleDelete = (id) => {
     const newUsers = users.filter((user) => user.id !== id);
     setUsers(newUsers);
   };
-  // const handleClick = (id) => {
-  //   console.log(id);
-  // };
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -85,14 +73,29 @@ const handleOk = () => {
             <GlobalOutlined className="icons" /> {user.website}
           </div>
           <div className="opinion">
-            <HeartOutlined onClick={() =>{users.filter((user) =>(user.id !== user.id? <HeartOutlined style={{color: "red"}}/>:<HeartFilled/>))} }
-
+            <HeartOutlined
+              onClick={() => {
+                users.filter((user) =>
+                  user.id !== user.id ? (
+                    <HeartOutlined style={{ color: "red" }} />
+                  ) : (
+                    <HeartFilled />
+                  )
+                );
+              }}
             />
-            
             <div className="line"></div>
             <div>
-              <EditOutlined className="edit" onClick={showModal}/>
-              {openModal && <ModalEdit close = {setOpenModal}/>}
+              <EditOutlined className="edit" onClick={() => showModal(user.id) }/>
+              {openModal && (
+                <ModalEdit
+                  close={setOpenModal}
+                  name={user.name}
+                  mail={user.email}
+                  phone={user.phone}
+                  website={user.website}
+                />
+              )}
             </div>
             <div className="line"></div>
             <DeleteFilled

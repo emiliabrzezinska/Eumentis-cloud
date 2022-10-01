@@ -85,7 +85,7 @@ color: rgb(87, 87, 87);
 
 @media (max-width:  1200px )
 {
-  .view {
+  .layout {
     display: grid;
     grid-template-columns: 2fr 2fr 2fr;
   }
