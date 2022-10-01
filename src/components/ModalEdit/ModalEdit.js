@@ -1,28 +1,45 @@
-import "./ModalEdit.css"
+import "./ModalEdit.css";
 
-const ModalEdit = ({ close}) => {
- 
+const ModalEdit = ({ close }) => {
   return (
     <div>
       <div className="modal">
-        
-        <div className="x">
-        <div className="bar"></div>
-        <div className="font">
-          <input></input>
-           Edit data<div className="small">Do you want to save changes?</div> </div> 
-        <div ><button onClick={() => close(false)} className="modal1">
-            Close
-          </button></div> 
-          
+        <div className="window">
+          <div className="bar"><span>Basic Modal</span><button className="x">X</button></div>
+          <form className="form">
+            <label className="one">
+              <span className="aster">*</span>
+              <span>Name:</span>
+            </label>
+            <input></input>
+            <label className="one">
+              <span className="aster">*</span>
+              <span>Email:</span>
+            </label>
+            <input></input>{" "}
+            <label className="one">
+              <span className="aster">*</span>
+              <span>Phone:</span>
+            </label>
+            <input></input>
+            <label className="one">
+              <span className="aster">*</span>
+              <span>Website:</span>
+            </label>
+            <input></input>
+          </form>
+          <div className="buttons">
+            <button onClick={() => close(false)} className="modal1">
+              Cancel
+            </button>
+            <button onClick={() => close(false)} className="modal1">
+              OK
+            </button>
+          </div>
         </div>
       </div>
-      
     </div>
   );
 };
 
 export default ModalEdit;
-
-  
- 

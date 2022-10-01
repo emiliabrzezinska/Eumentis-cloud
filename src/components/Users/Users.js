@@ -10,13 +10,15 @@ import { HeartFilled } from "@ant-design/icons/lib/icons/index.js";
 import { EditOutlined } from "@ant-design/icons/lib/icons/index.js";
 import { DeleteFilled } from "@ant-design/icons/lib/icons/index.js";
 import "./Users.css";
+import { formatStrategyValues } from "rc-tree-select/lib/utils/strategyUtil.js";
 
 const Users = ({close}) => {
   const [users, setUsers] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [isCliked, setIsCliked] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [hearts, setHearts] = useState([])
 
   
   
@@ -33,6 +35,12 @@ const handleOk = () => {
     setIsModalOpen(false);
   };
 
+
+// const handleChooseHeart = (id) =>{
+// console.log('click');
+// setHearts((hearts) =>
+// hearts.includes(id) ? hearts.filter((heart)=> heart !== id ) : hearts.concat(id) ); 
+// }
 
   const handleDelete = (id) => {
     const newUsers = users.filter((user) => user.id !== id);
@@ -77,17 +85,10 @@ const handleOk = () => {
             <GlobalOutlined className="icons" /> {user.website}
           </div>
           <div className="opinion">
-            {!isCliked ? (
-              <HeartOutlined
-                className="heartOutlined"
-                onClick={() => setIsCliked(!isCliked)}
-              />
-            ) : (
-              <HeartFilled
-                className="heartFilled"
-                onClick={() => setIsCliked(!isCliked)}
-              />
-            )}
+            <HeartOutlined onClick={() =>{users.filter((user) =>(user.id !== user.id? <HeartOutlined style={{color: "red"}}/>:<HeartFilled/>))} }
+
+            />
+            
             <div className="line"></div>
             <div>
               <EditOutlined className="edit" onClick={showModal}/>

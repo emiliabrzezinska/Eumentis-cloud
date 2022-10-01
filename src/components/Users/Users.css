@@ -80,16 +80,6 @@ color: rgb(87, 87, 87);
 .edit{
   color: gray;
 }
-.heartOutlined{
-  color: red;
-  font-size: 20px;
-}
-
-.heartFilled{
-  color: red; 
-  font-size: "20px"
-}
-
 
 
 
@@ -101,6 +91,8 @@ color: rgb(87, 87, 87);
   }
   
 }
+
+
 
 @media (max-width: 768px)
 
